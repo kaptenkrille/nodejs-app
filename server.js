@@ -56,6 +56,7 @@ app.get('/add-car', (req, res) => {
 
 // Route to add a car with POST request
 app.post('/add-car', async (req, res) => {
+  console.log(req.body); // Log request body to inspect the data
   const { name, number } = req.body;
   try {
     await pool.query('INSERT INTO cars(name, number) VALUES($1, $2)', [name, number]);
