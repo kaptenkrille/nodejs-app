@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
       <h1>Welcome to the Node.js PostgreSQL Car API!</h1>
       <ul>
         <li><a href="/cars">View Cars</a> - GET /cars</li>
-        <li><a href="/add-car">Add a Car</a> - POST /add-car (Use a tool like Postman or a similar HTTP client to test this route.)</li>
+        <li><a href="/add-car">Add a Car</a> - GET /add-car (to see the form)</li>
         <li><a href="/health">Health Check</a> - GET /health</li>
       </ul>
     </body>
@@ -30,7 +30,31 @@ app.get('/', (req, res) => {
   `);
 });
 
-// Route to add a car
+// Serve an HTML form at the /add-car route for GET requests
+app.get('/add-car', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Add Car</title>
+    </head>
+    <body>
+      <h1>Add a New Car</h1>
+      <form action="/add-car" method="post">
+        <label for="name">Car Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="number">Number:</label>
+        <input type="number" id="number" name="number" required><br><br>
+        <button type="submit">Add Car</button>
+      </form>
+      <a href="/">Back to Home</a>
+    </body>
+    </html>
+  `);
+});
+
+// Route to add a car with POST request
 app.post('/add-car', async (req, res) => {
   const { name, number } = req.body;
   try {
@@ -72,8 +96,7 @@ app.post('/add-car', async (req, res) => {
   }
 });
 
-
-// Route to get all cars
+// Route to get all cars with GET request
 app.get('/cars', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM cars ORDER BY id ASC');
@@ -133,7 +156,6 @@ app.get('/cars', async (req, res) => {
     `);
   }
 });
-
 
 // Health check route
 app.get('/health', (req, res) => res.send('OK'));
