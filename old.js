@@ -8,28 +8,6 @@ const pool = new Pool({
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
-// Define a root path route handler
-app.get('/', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Node.js PostgreSQL Car API</title>
-    </head>
-    <body>
-      <h1>Welcome to the Node.js PostgreSQL Car API!</h1>
-      <ul>
-        <li><a href="/cars">View Cars</a> - GET /cars</li>
-        <li><a href="/add-car">Add a Car</a> - POST /add-car (Use a tool like Postman or a similar HTTP client to test this route.)</li>
-        <li><a href="/health">Health Check</a> - GET /health</li>
-      </ul>
-    </body>
-    </html>
-  `);
-});
-
 // Route to add a car
 app.post('/add-car', async (req, res) => {
   const { name, number } = req.body;
@@ -60,4 +38,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-
