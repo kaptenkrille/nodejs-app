@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-postgres-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application with PostgreSQL integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
