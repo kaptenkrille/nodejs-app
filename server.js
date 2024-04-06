@@ -7,6 +7,8 @@ const pool = new Pool({
 });
 
 app.use(express.json()); // Middleware to parse JSON bodies
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+
 
 // Define a root path route handler
 app.get('/', (req, res) => {
