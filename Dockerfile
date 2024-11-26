@@ -4,7 +4,8 @@ ARG REPO_URL
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
 WORKDIR /app
-RUN git clone https://kristofer@constaq.se:-5dg\2Y`D)D,eW%ZPP@https://extgit.constaq.se/kristofer/nodejs-app.git .
+RUN git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO_URL#https://} .
+
 
 # Second stage: Set up the application
 FROM node:14
