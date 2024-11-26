@@ -8,8 +8,12 @@ services:
         REPO_URL: ${REPO_URL}
         GIT_USERNAME: ${GIT_USERNAME}
         GIT_PASSWORD: ${GIT_PASSWORD}
-    ports:
-      - "3000:3000"
     environment:
       - NODE_ENV=${NODE_ENV:-production}
       - DATABASE_URL=${DATABASE_URL}
+    networks:
+      - production
+
+networks:
+  production:
+    external: true
