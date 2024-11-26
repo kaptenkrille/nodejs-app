@@ -2,13 +2,17 @@ version: '3.8'
 
 services:
   app:
+    build:
+      context: .
+      args:
+        - REPO_URL=${REPO_URL}
+        - GIT_USERNAME=${GIT_USERNAME}
+        - GIT_PASSWORD=${GIT_PASSWORD}
     image: node:14
     working_dir: /usr/src/app
-    volumes:
-      - .:/usr/src/app
     ports:
       - "3000:3000"
-    command: bash -c "npm install && npm start"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=${NODE_ENV:-production}
       - DATABASE_URL=${DATABASE_URL}
+    command: bash -c "npm install && npm start"
